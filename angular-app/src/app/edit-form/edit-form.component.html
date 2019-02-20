@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row form-destination">
+        <form [formGroup]='articleEditForm' (submit)="submitForm()">
+            <div class="col-lg-6 left">             
+                <div>
+                    <label class="input-header">Header:</label><br />
+                    <input type="text" class="input-component" [formControl]="header" />
+                </div>
+                <div>
+                    <label class="input-header">Short description:</label><br />
+                    <input type="text" class="input-component" [formControl]="description" />
+                </div>
+                <div>
+                    <label class="input-header">Content:</label><br />
+                    <input type="text" class="input-component" [formControl]="content" />
+                </div>
+            </div>
+            <div class="col-lg-6 right">
+                <div>
+                    <label class="input-header">Image Url:</label><br />
+                    <input type="text" class="input-component" [formControl]="imageUrl" />
+                </div>
+                <div>
+                    <label class="input-header">Date:</label><br />
+                    <input type="text" class="input-component" [formControl]="date" />
+                </div>
+                <div>
+                    <label class="input-header">Author:</label><br />
+                    <input type="text" class="input-component" [formControl]="author" />
+                </div>
+                <div>
+                    <label class="input-header">Source url:</label><br />
+                    <input type="text" class="input-component" [formControl]="sourceUrl" />
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+

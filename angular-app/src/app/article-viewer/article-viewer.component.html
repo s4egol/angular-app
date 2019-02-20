@@ -1,0 +1,6 @@
+<h2 class="selected-source">{{selectedSource}}</h2>
+<app-filter-block [sources]="sources.default" (onChangeSource)="onChangeSource($event)"></app-filter-block>
+<app-article-block *ngFor="let article of articles" [article]="article"></app-article-block>
+<div *ngIf="CanUploadArticles()">
+    <button (click)="UploadAdditionalNews()" class="btn btn-success load-more">Load more news</button>
+</div>

@@ -1,0 +1,20 @@
+.left{
+    float: left; 
+}
+
+.right{
+    float: right; 
+}
+
+.input-header {
+    margin: 4px;
+}
+
+.input-component {
+    margin: 5px, 10px, 5px, 10px;
+}
+
+.form-destination {
+    display: flex;
+    justify-content: center;
+}

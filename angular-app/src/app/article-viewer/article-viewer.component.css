@@ -1,0 +1,9 @@
+.selected-source {
+    display: flex;
+    justify-content: center;
+}
+
+.load-more {
+    text-align: center;
+    border: 50px, 10px, 50px, 10px;
+}

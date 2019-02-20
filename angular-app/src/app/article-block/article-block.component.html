@@ -1,0 +1,17 @@
+<div class="article-offset">
+    <div>
+        <a href={{article.url}}>
+            <img src={{article.urlToImage}} class="article-image" alt="article-image">
+        </a>  
+    </div>
+    <div class="description-block">
+        <a href={{article.url}}>
+            <h4>{{article.title}}</h4>
+        </a>
+        <p>{{article.description}}</p>
+    </div>
+    <div>
+        <button [routerLink]="['/edit', article.id]">Edit</button>
+        <button>Delete</button>
+    </div>
+</div>
