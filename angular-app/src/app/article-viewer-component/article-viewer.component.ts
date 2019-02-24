@@ -3,7 +3,7 @@ import * as sources from '../../assets/sources-list.json';
 import * as articles from '../../assets/articles.json';
 
 @Component({
-  selector: 'app-article-viewer',
+  selector: 'article-viewer-component',
   templateUrl: './article-viewer.component.html',
   styleUrls: ['./article-viewer.component.css']
 })

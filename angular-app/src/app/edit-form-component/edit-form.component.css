@@ -1,3 +1,8 @@
+.edit-form-component {
+    display: flex;
+    justify-content: center;
+}
+
 .left{
     float: left; 
 }
@@ -12,9 +17,4 @@
 
 .input-component {
     margin: 5px, 10px, 5px, 10px;
-}
-
-.form-destination {
-    display: flex;
-    justify-content: center;
 }

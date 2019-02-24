@@ -4,7 +4,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import * as articles from '../../assets/articles.json';
 
 @Component({
-  selector: 'app-edit-form',
+  selector: 'edit-form-component',
   templateUrl: './edit-form.component.html',
   styleUrls: ['./edit-form.component.css']
 })

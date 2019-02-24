@@ -1,20 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
+  selector: 'header-component',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   @Input() headerSourceName: string = "";
 
   private defaultSourceName: string = "News";
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   public getHeader(): string{
       return this.headerSourceName ? this.headerSourceName : this.defaultSourceName;
