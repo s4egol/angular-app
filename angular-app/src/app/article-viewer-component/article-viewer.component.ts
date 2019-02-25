@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as sources from '../../assets/sources-list.json'; 
 import * as articles from '../../assets/articles.json';
+import { ArticleService } from '../../app/services/article.service';
+import { Article } from '../models/article';
 
 @Component({
   selector: 'article-viewer-component',
@@ -10,16 +12,23 @@ import * as articles from '../../assets/articles.json';
 
 export class ArticleViewerComponent implements OnInit {
 
-  private articleBatch: number = 5;
-
   public sources: string[] = sources;
-  public articles: any[];
+  public articles: Array<Article>;
   public selectedSource: string;
+  public limit: number = 4;
+  public query: string = '';
 
-  constructor() { }
+  constructor(
+      private articleService: ArticleService
+    ) { }
 
   ngOnInit() {
-      this.articles = articles.slice(0, 4);
+    this.articleService.getArticles().subscribe((articles) => {
+        this.articles = articles;
+    });
+    this.articleService.updateFilterValue.subscribe((value: string) => {
+        this.query = value;
+    });
   }
 
   onChangeSource(source: string): void {
@@ -27,12 +36,12 @@ export class ArticleViewerComponent implements OnInit {
   }
 
   CanUploadArticles(){
-      return this.articles.length < articles.length;
+      return this.articles.length <= this.limit;
   }
 
   UploadAdditionalNews(){
       if (this.CanUploadArticles()){
-          this.articles = articles.slice(0, this.articles.length - 1 + this.articleBatch);
+          this.limit += 3;
       }
   }
 }

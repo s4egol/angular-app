@@ -1,36 +1,36 @@
 <div class="container">
     <div class="row edit-form-component">
         <form [formGroup]='articleEditForm' (submit)="submitForm()">
-            <div class="col-lg-6 left">             
+            <div class="col-lg-6 edit-form-component__left">             
                 <div>
-                    <label class="input-header">Header:</label><br />
-                    <input type="text" class="input-component" [formControl]="header" />
+                    <label class="edit-form-component__input-header">Header:</label><br />
+                    <input type="text" class="edit-form-component__input-component" [formControl]="header" />
                 </div>
                 <div>
-                    <label class="input-header">Short description:</label><br />
-                    <input type="text" class="input-component" [formControl]="description" />
+                    <label class="edit-form-component__input-header">Short description:</label><br />
+                    <input type="text" class="edit-form-component__input-component" [formControl]="description" />
                 </div>
                 <div>
-                    <label class="input-header">Content:</label><br />
-                    <input type="text" class="input-component" [formControl]="content" />
+                    <label class="edit-form-component__input-header">Content:</label><br />
+                    <input type="text" class="edit-form-component__input-component" [formControl]="content" />
                 </div>
             </div>
-            <div class="col-lg-6 right">
+            <div class="col-lg-6 edit-form-component__right">
                 <div>
-                    <label class="input-header">Image Url:</label><br />
-                    <input type="text" class="input-component" [formControl]="imageUrl" />
+                    <label class="edit-form-component__input-header">Image Url:</label><br />
+                    <input type="text" class="edit-form-component__input-component" [formControl]="imageUrl" />
                 </div>
                 <div>
-                    <label class="input-header">Date:</label><br />
-                    <input type="text" class="input-component" [formControl]="date" />
+                    <label class="edit-form-component__input-header">Date:</label><br />
+                    <input type="text" class="edit-form-component__input-component" [formControl]="date" />
                 </div>
                 <div>
-                    <label class="input-header">Author:</label><br />
-                    <input type="text" class="input-component" [formControl]="author" />
+                    <label class="edit-form-component__input-header">Author:</label><br />
+                    <input type="text" class="edit-form-component__input-component" [formControl]="author" />
                 </div>
                 <div>
-                    <label class="input-header">Source url:</label><br />
-                    <input type="text" class="input-component" [formControl]="sourceUrl" />
+                    <label class="edit-form-component__input-header">Source url:</label><br />
+                    <input type="text" class="edit-form-component__input-component" [formControl]="sourceUrl" />
                 </div>
                 <div>
                     <button type="submit" class="btn btn-success">Submit</button>

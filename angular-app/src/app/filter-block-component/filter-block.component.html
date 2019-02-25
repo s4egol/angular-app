@@ -1,21 +1,21 @@
 <div class="filter-block-component">
-    <div class="filter-item">
+    <div class="filter-block-component__filter-item">
         <select (change)="onChangeOption($event.target.value)">
             <option *ngFor="let source of sources" [value]="source">{{source}}</option>
         </select>
     </div>
 
-    <div class="filter-item">
-        <input type="text" placeholder="Type your text..." />
-        <button type="submit">Filter</button>
+    <div class="filter-block-component__filter-item">
+        <input #filterInput type="text" placeholder="Type your text..." />
+        <button (click)="onFilterClick(filterInput.value)">Filter</button>
     </div>
 
-    <div class="filter-item">
+    <div class="filter-block-component__filter-item">
         <input type="checkbox" />
         <label>Only created by me</label>
     </div>
 
-    <div class="filter-item">
+    <div class="filter-block-component__filter-item">
         <button routerLink="/create">Add article</button>
     </div>
 </div>

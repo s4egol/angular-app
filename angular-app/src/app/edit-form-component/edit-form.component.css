@@ -3,18 +3,18 @@
     justify-content: center;
 }
 
-.left{
+.edit-form-component__left{
     float: left; 
 }
 
-.right{
+.edit-form-component__right{
     float: right; 
 }
 
-.input-header {
+.edit-form-component__input-header {
     margin: 4px;
 }
 
-.input-component {
+.edit-form-component__input-component {
     margin: 5px, 10px, 5px, 10px;
 }

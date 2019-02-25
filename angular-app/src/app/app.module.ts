@@ -9,6 +9,8 @@ import { ArticleViewerComponent } from './article-viewer-component/article-viewe
 import { HeaderComponent } from './header-component/header.component';
 import { FilterBlockComponent } from './filter-block-component/filter-block.component';
 import { ArticleBlockComponent } from './article-block-component/article-block.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ArticleFilterPipe } from './pipes/article-filter/article-filter.pipe';
 
 const appRoutes: Routes =[
     { path: '', component: ArticleViewerComponent},
@@ -23,11 +25,13 @@ const appRoutes: Routes =[
     ArticleViewerComponent,
     HeaderComponent,
     FilterBlockComponent,
-    ArticleBlockComponent
+    ArticleBlockComponent,
+    ArticleFilterPipe
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

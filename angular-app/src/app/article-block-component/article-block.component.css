@@ -5,13 +5,13 @@
     margin: 10px;
 }
 
-.article-image {
+.article-block-component__article-image {
     width: 120px;
     height: 120px;
     border: 2px solid black;
 }
 
-.description-block {
+.article-block-component__description-block {
     align-items: flex-start;
     width: 500px;
     margin: 10px;

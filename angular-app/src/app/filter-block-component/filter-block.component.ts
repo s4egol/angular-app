@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { ArticleService } from '../../app/services/article.service';
 
 @Component({
   selector: 'filter-block-component',
@@ -6,16 +7,27 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./filter-block.component.css']
 })
 
-export class FilterBlockComponent {
+export class FilterBlockComponent implements OnInit {
 
   public isSourcePickerAvailable: boolean = true;
+  public sources: string[] = ['Local news']; 
 
-  @Input() sources: string[]; 
-  @Output() onChangeSource = new EventEmitter();
+  constructor(
+    private articleService: ArticleService
+  ) { }
 
-  constructor() { }
+  ngOnInit() {
+      this.articleService.getSources().subscribe(
+          (response) => this.sources = [...this.sources, ...response]
+      );
+      this.articleService.updatedSource.emit(this.sources[0]);
+  }
 
   onChangeOption(source: string): void {
-      this.onChangeSource.emit(source);
+      this.articleService.updatedSource.emit(source);
+  }
+
+  onFilterClick(query: string) {
+      this.articleService.updateFilterValue.emit(query);
   }
 }
