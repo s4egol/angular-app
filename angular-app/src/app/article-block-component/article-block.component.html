@@ -11,7 +11,11 @@
         <p>{{article.description}}</p>
     </div>
     <div>
-        <button [routerLink]="['/edit', article.id]">Edit</button>
-        <button>Delete</button>
+        <div *ngIf="article.isLocal">
+            <button [routerLink]="['/edit', article.id]">Edit</button>
+        </div>
+        <div *ngIf="article.isLocal">
+            <button>Delete</button>
+        </div>
     </div>
 </div>

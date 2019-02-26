@@ -1,11 +1,10 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiResponce, SourceItem } from '../../app/models/response';
 import { Article, ArticleResponse } from '../../app/models/article';
 import { Source } from '../../app/models/source';
 import { map } from 'rxjs/operators';
-import { API_KEY, SOURCES, NEWS_BASE_URL } from '../../constants/index';
-import * as localArticles from '../../assets/articles.json';
+import { API_KEY, SOURCES, NEWS_BASE_URL, LOCAL_NEWS } from '../../constants/index';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +17,7 @@ export class ArticleService {
 
     private articles: Array<Article>;
     private source: string = 'local';
+    private httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'}) };
 
     constructor(private httpClient: HttpClient) { }
 
@@ -25,11 +25,7 @@ export class ArticleService {
         this.updatedSource.emit(source.name);
         this.source = source.id;
 
-        this.getArticles().subscribe((response) => {
-            this.articles = response;
-            this.updateArticles.emit(this.articles);
-        },
-        (error) => console.log(error));
+        this.getArticles().subscribe();
     }
 
     public getSources() {
@@ -42,13 +38,15 @@ export class ArticleService {
     }
 
     public getArticles() {
-        var chooseUrl = `${NEWS_BASE_URL}${this.source}&apiKey=${API_KEY}`;
+        var chooseUrl = this.source === 'local'
+            ? `${LOCAL_NEWS}`
+            : `${NEWS_BASE_URL}${this.source}&apiKey=${API_KEY}`;
 
         return this.httpClient.get<ArticleResponse>(chooseUrl)
             .pipe(
                 map((response: ArticleResponse) => {
                     if (this.source === 'local') {
-                        this.articles = localArticles;
+                        this.articles = response.articles;
                         this.updateArticles.emit(this.articles);
                         return this.articles;
                     }
@@ -59,5 +57,21 @@ export class ArticleService {
                     return this.articles;
                 })
         );
+    }
+
+    public getArticleById(id) {
+        return this.articles.filter(article => article._id === id)[0];
+    }
+
+    public addArticle(article) {
+        this.httpClient.post(`${LOCAL_NEWS}`, JSON.stringify(article), { ...this.httpOptions, responseType: 'text'}).subscribe(() => {
+            this.getArticles().subscribe();
+        });
+    }
+
+    public editArticle(article, id) {
+        this.httpClient.put(`${LOCAL_NEWS}/${id}`, JSON.stringify(article), { ...this.httpOptions, responseType: 'text'}).subscribe(() => {
+          this.getArticles().subscribe();
+        });
     }
 }

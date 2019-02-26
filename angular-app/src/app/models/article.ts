@@ -10,7 +10,8 @@ export interface Article {
     author: string,
     isLocalArticle?: boolean,
     title: string,
-    publishedAt: string,
+    isLocal?: boolean,
+    _id?: string
 }
 
 export interface ArticleResponse {
