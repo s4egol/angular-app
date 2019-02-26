@@ -1,6 +1,6 @@
 <h2 class="selected-source">{{selectedSource}}</h2>
 <filter-block-component (onChangeSource)="onChangeSource($event)"></filter-block-component>
-<article-block-component *ngFor="let article of articles | articleFilter: query" [article]="article"></article-block-component>
-<div *ngIf="CanUploadArticles()">
-    <button (click)="UploadAdditionalNews()" class="btn btn-success load-more">Load more news</button>
+<article-block-component *ngFor="let article of articles | slice:0:limit | articleFilter: query" [article]="article"></article-block-component>
+<div *ngIf="!allArticlesLoaded()">
+    <button (click)="uploadAdditionalNews()" class="btn btn-success load-more">Load more news</button>
 </div>

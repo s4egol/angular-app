@@ -11,6 +11,7 @@ import { FilterBlockComponent } from './filter-block-component/filter-block.comp
 import { ArticleBlockComponent } from './article-block-component/article-block.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ArticleFilterPipe } from './pipes/article-filter/article-filter.pipe';
+import { ArticleService } from './services/article.service';
 
 const appRoutes: Routes =[
     { path: '', component: ArticleViewerComponent},
@@ -34,7 +35,9 @@ const appRoutes: Routes =[
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    ArticleService
+  ],
   bootstrap: [AppComponent]
 })
 

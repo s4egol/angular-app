@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ArticleService } from '../../app/services/article.service';
+import { Source } from '../models/source';
 
 @Component({
   selector: 'filter-block-component',
@@ -10,7 +11,7 @@ import { ArticleService } from '../../app/services/article.service';
 export class FilterBlockComponent implements OnInit {
 
   public isSourcePickerAvailable: boolean = true;
-  public sources: string[] = ['Local news']; 
+  public sources: Array<Source> = [{id: 'local', name: 'Local news'}]; 
 
   constructor(
     private articleService: ArticleService
@@ -20,11 +21,12 @@ export class FilterBlockComponent implements OnInit {
       this.articleService.getSources().subscribe(
           (response) => this.sources = [...this.sources, ...response]
       );
-      this.articleService.updatedSource.emit(this.sources[0]);
+      this.articleService.onChangeSource(this.sources[0]);
   }
 
   onChangeOption(source: string): void {
-      this.articleService.updatedSource.emit(source);
+      const newSource = this.sources.find(item => item.name === source);
+      this.articleService.onChangeSource(newSource);
   }
 
   onFilterClick(query: string) {

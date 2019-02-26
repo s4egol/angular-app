@@ -3,6 +3,7 @@ import * as sources from '../../assets/sources-list.json';
 import * as articles from '../../assets/articles.json';
 import { ArticleService } from '../../app/services/article.service';
 import { Article } from '../models/article';
+import { Source } from '../models/source';
 
 @Component({
   selector: 'article-viewer-component',
@@ -12,8 +13,7 @@ import { Article } from '../models/article';
 
 export class ArticleViewerComponent implements OnInit {
 
-  public sources: string[] = sources;
-  public articles: Array<Article>;
+  public articles: Array<Article> = [];
   public selectedSource: string;
   public limit: number = 4;
   public query: string = '';
@@ -29,18 +29,22 @@ export class ArticleViewerComponent implements OnInit {
     this.articleService.updateFilterValue.subscribe((value: string) => {
         this.query = value;
     });
+    this.articleService.updateArticles.subscribe((articles: Array<Article>) => {
+        this.articles = articles;
+        this.limit = 4;
+    });
   }
 
   onChangeSource(source: string): void {
       this.selectedSource = source;
   }
 
-  CanUploadArticles(){
+  allArticlesLoaded(){
       return this.articles.length <= this.limit;
   }
 
-  UploadAdditionalNews(){
-      if (this.CanUploadArticles()){
+  uploadAdditionalNews(){
+      if (!this.allArticlesLoaded()){
           this.limit += 3;
       }
   }
